@@ -7,13 +7,13 @@ import React, { useEffect, useState, useRef } from "react";
 import dayjs from "dayjs";
 import toast from "react-hot-toast";
 
-// Ensure cally is only imported on the client side
+
 if (typeof window !== "undefined") {
   import("cally");
 }
 
 const Page = () => {
-  // --- ALL YOUR ORIGINAL STATES PRESERVED ---
+
   const [intextofheaderdiv, setintextofheaderdiv] = useState(null);
   const [indexofdu, setindexofdu] = useState(0);
   const [selecdate, setselecdate] = useState(null);
@@ -36,7 +36,7 @@ const Page = () => {
   const [allreq, setallreq] = useState([]);
   const [cusorpre, setcusorpre] = useState(null);
 
-  // --- REFS ---
+
   const date = useRef(null);
   const numvalue = useRef("");
   const namevalue = useRef("");
@@ -45,7 +45,7 @@ const Page = () => {
 
   const currDate = dayjs(new Date()).format("YYYY/MM/DD");
 
-  // --- ALL YOUR ORIGINAL LOGIC & EFFECTS ---
+
   useEffect(() => {
     if (selecdate) {
       setconverselecttoday(
@@ -131,7 +131,7 @@ const Page = () => {
     return () => el?.removeEventListener("change", handleChange);
   }, [calenderhide]);
 
-  // --- DATA ARRAYS ---
+
   const fourdivs = ["All Requests", "Pending", "Partial", "Paid", "Failed"];
   const headerdivs = ["PayCollect", "⬛ Dashboard", " 💳 Collect Payments", "👥 Customers", "📊 Reports", "🔔", "Maria A."];
   const durationarr = [
@@ -140,7 +140,7 @@ const Page = () => {
     { value: "Custom", day: converselecttoday },
   ];
 
-  // --- DATE CALCULATION FOR CALLY ---
+
   const parts = currDate.split("/");
   const day = Number(parts[2]) + 1;
   const minDate = `${parts[0]}-${parts[1]}-${day < 10 ? "0" + day : day}`;
@@ -148,7 +148,7 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-white font-sans overflow-x-hidden">
-      {/* 1. RESPONSIVE HEADER */}
+
       <div className="bg-[#0F3460] w-full min-h-[60px] flex flex-wrap gap-4 items-center justify-center px-4 py-2 sticky top-0 z-[100]">
         {headerdivs.map((i, ind) => (
           <div
@@ -166,10 +166,10 @@ const Page = () => {
         ))}
       </div>
 
-      {/* 2. MAIN CONTENT CONTAINER */}
+
       <div className="max-w-7xl mx-auto p-4 md:p-8">
         
-        {/* HEADER SECTION (Title + Buttons) */}
+
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
           <div className="text-xl font-black text-black">
             {intextofheaderdiv ?? "💳 Collect Payments"}
@@ -185,7 +185,7 @@ const Page = () => {
           </div>
         </div>
 
-        {/* 3. TIME PERIOD SELECTOR */}
+
         <div className="space-y-6">
           <div className="flex flex-wrap items-center gap-3">
             <span className="font-black text-gray-400">Time Period:</span>
@@ -206,7 +206,7 @@ const Page = () => {
             ))}
           </div>
 
-          {/* DATE DETAILS */}
+
           <div className="bg-gray-100 p-4 rounded-xl flex flex-col md:flex-row md:items-center gap-4 relative">
              <div onClick={() => setcalenderhide(true)} className="cursor-pointer font-bold text-sm">
                 <span className="text-gray-500 mr-2">Custom:</span>
@@ -223,7 +223,7 @@ const Page = () => {
                 <span className="text-gray-400 italic">Stats and table reflect requests created within this period.</span>
              </div>
 
-             {/* CALENDAR POPUP */}
+
              {calenderhide && (
                 <div className="absolute top-full left-0 md:left-auto md:right-0 mt-2 z-[110]">
                   <calendar-date
@@ -244,7 +244,7 @@ const Page = () => {
               )}
           </div>
 
-          {/* 4. STATS CARDS GRID */}
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
             <div className="bg-gray-200 p-4 rounded-2xl min-h-[100px] flex flex-col justify-center">
               <div className="text-2xl font-black text-blue-950">{finalarr.length}</div>
@@ -272,7 +272,7 @@ const Page = () => {
             </div>
           </div>
 
-          {/* 5. FILTER TABS */}
+
           <div className="flex flex-wrap gap-6 md:gap-10 border-b-2 border-gray-100 pb-2">
             {fourdivs.map((i, ind) => (
               <div
@@ -288,7 +288,7 @@ const Page = () => {
             ))}
           </div>
 
-          {/* 6. RESPONSIVE TABLE CONTAINER */}
+
           <div className="bg-gray-200 rounded-xl overflow-hidden shadow-inner">
             <div className="overflow-x-auto">
               <div className="min-w-[1000px]">
@@ -305,7 +305,7 @@ const Page = () => {
                   <div>ACTION</div>
                 </div>
 
-                {/* Table Body */}
+  
                 <div className="max-h-[500px] overflow-y-auto">
                   {zerocheck && finalarr.length === 0 && (
                     <div className="p-20 text-center text-xl font-bold text-gray-400">
@@ -361,7 +361,7 @@ const Page = () => {
         </div>
       </div>
 
-      {/* 7. RESPONSIVE MODAL (Save New Request) */}
+
       {addinfo && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-[200] p-4">
           <div className="bg-blue-400 w-full max-w-lg rounded-2xl shadow-2xl p-6 md:p-10 relative overflow-y-auto max-h-[90vh]">
