@@ -345,7 +345,7 @@ const Page = () => {
                           className="bg-red-500 text-white text-[10px] py-1 px-3 rounded font-bold hover:bg-red-600 transition"
                           onClick={() => {
                             setidfordelete(i.id);
-                            // Small delay to let state update or call directly
+ 
                             setTimeout(deletereq, 10);
                           }}
                         >
